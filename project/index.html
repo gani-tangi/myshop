@@ -1,0 +1,98 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Fnf</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <!-- Add this in <head> for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    .navbar #logo h1{
+      font-style: bold;
+      color: orange;
+
+    }
+  </style>
+</head>
+<body>
+
+
+
+<!-- Amazon-like Navbar -->
+<div class="navbar">
+    <h1 style="cursor: pointer;" onclick="window.location.href='login.html'">MYSHOP</h1>
+    
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search products">
+        <button onclick="searchProducts()"><i class="fas fa-search"></i></button>
+    </div>
+
+    <div class="nav-icons">
+        <!-- Profile Icon -->
+        <a href="profile.html" title="Your Account">
+            <i class="fas fa-user"></i>
+        </a>
+        
+        <!-- Cart Icon -->
+        <a href="cart.html" title="Cart">
+            <i class="fas fa-shopping-cart"></i>
+        </a>
+        <!-- Logout Icon -->
+        <a href="#" onclick="logout()" title="Logout">  
+            <i class="fas fa-sign-out-alt"></i>   
+        </a>
+    </div>
+</div>
+
+
+<div class="slider">
+    <div class="slides" id="slides">
+    <img src="images/offer1.jpg" alt="Offer 1" onclick="openOffer('Offer 1')">
+    <img src="images/offer2.jpg" alt="Offer 2" onclick="openOffer('Offer 2')">
+    <img src="images/offer3.jpg" alt="Offer 3" onclick="openOffer('Offer 3')">
+    </div>
+</div>
+  <main>
+    <div class="product-grid" id="product-list">
+      <!-- Products will load here -->
+    </div>
+    <nav id="navbar-links">
+  <a href="cart.html">Cart</a>
+  <a href="login.html" id="auth-link">Login</a>
+</nav>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 MYSHOP</p>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+  const user = JSON.parse(localStorage.getItem("loggedInUser"));
+  const nav = document.getElementById("navbar-links");
+  if (user && nav) {
+    nav.innerHTML = `
+      <a href="cart.html">Cart</a>
+      <span style="color: white; margin-left: 15px;">Hi, ${user.name}</span>
+      <a href="#" onclick="logout()" style="margin-left: 15px;">Logout</a>
+    `;
+  }
+
+  function logout() {
+    localStorage.removeItem("loggedInUser");
+    window.location.reload();
+  }
+  window.logout = logout;
+  /* ====== LOGO CLICK LOGIN OR PROFILE ====== */
+  const logo = document.getElementById("logo");
+  if (logo) {
+    logo.addEventListener("click", () => {
+      const loggedIn = localStorage.getItem("userToken") !== null;
+      window.location.href = loggedIn ? "profile.html" : "login.html";
+    });
+  }
+</script>
+</body>
+</html>

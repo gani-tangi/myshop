@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .register-container {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            width: 300px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #ff9900;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #e68a00;
+        }
+    </style>
+</head>
+<body>
+
+<div class="register-container">
+    <h2>Register</h2>
+    <input type="text" id="name" placeholder="Full Name" required>
+    <input type="email" id="email" placeholder="Email" required>
+    <input type="text" id="address" placeholder="Address" required>
+    <input type="password" id="password" placeholder="Password" required>
+    <button onclick="registerUser()">Register</button>
+</div>
+
+<script>
+function registerUser() {
+    const user = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        address: document.getElementById("address").value,
+        password: document.getElementById("password").value
+    };
+
+    if (!user.name || !user.email || !user.password) {
+        alert("Please fill all fields");
+        return;
+    }
+
+    let users = JSON.parse(sessionStorage.getItem("users")) || [];
+    users.push(user);
+    sessionStorage.setItem("users", JSON.stringify(users));
+    sessionStorage.setItem("loggedUser", JSON.stringify(user)); // auto login
+    window.location.href = "profile.html";
+}
+</script>
+
+</body>
+</html>

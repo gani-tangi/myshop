@@ -1,0 +1,91 @@
+<!-- product.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Product Details | Fnf</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Add this in <head> for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    .navbar #logo h1 {
+      font-style: bold;
+      color: orange;
+    }
+  </style>  
+</head>
+<body>
+<header>
+
+  <div class="navbar">
+  <h1 style="cursor: pointer;" onclick="window.location.href='login.html'">MYSHOP</h1>
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Search products">
+    <button onclick="searchProducts()"><i class="fas fa-search"></i></button>
+  </div>
+  <div class="nav-icons">
+    <!-- Profile Icon -->
+    <a href="profile.html" title="Your Account">
+      <i class="fas fa-user"></i>
+    </a>
+    <a href="index.html"title="home">
+      <i class="fas fa-home"></i>
+    </a>
+    <!-- Cart Icon -->
+    <a href="cart.html" title="Cart">
+      <i class="fas fa-shopping-cart"></i>
+    </a>
+    <!-- Orders Icon -->
+    <a href="orders.html" title="Orders"> 
+      <i class="fas fa-box"></i>    
+    </a>  
+    <!-- Wishlist Icon -->
+    <a href="wishlist.html" title="Wishlist">
+      <i class="fas fa-heart"></i>    
+    </a>      
+    <!-- Logout Icon -->
+    <a href="#" onclick="logout()" title="Logout">  
+      <i class="fas fa-sign-out-alt"></i>   
+    </a>
+  </div>
+  <!-- Add navbar-links for user info if not present -->  
+  <div id="navbar-links"></div>
+  </div>    
+
+  </header>
+
+  <main>
+    <div id="product-details"></div>
+
+    <hr />
+
+    <h3 style="margin: 30px 0 10px;">Recommended Products</h3>
+    <div class="product-grid" id="recommended-products">
+      <!-- Related products here -->
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 MYSHOP</p>
+  </footer>
+
+  <script src="product.js"></script>
+  <script>
+  // Only try to update navbar-links if it exists
+  const user = JSON.parse(localStorage.getItem("loggedInUser"));
+  const nav = document.getElementById("navbar-links");
+  if (user && nav) {
+    nav.innerHTML = `
+      <span style="color: white; margin-left: 15px;">Hi, ${user.name}</span>
+    `;
+  }
+
+  // Make logout globally accessible for icon onclick
+  function logout() {
+    localStorage.removeItem("loggedInUser");
+    window.location.reload();
+  }
+  window.logout = logout;
+  </script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Your Profile</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+/* Amazon-like Navbar */
+.navbar {
+    background-color: #131921;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px;
+}
+.navbar h1 {
+    font-size: 22px;
+    cursor: pointer;
+    margin: 0;
+}
+.nav-icons a {
+    color: white;
+    font-size: 20px;
+    margin-left: 20px;
+}
+.nav-icons a:hover {
+    color: #febd69;
+}
+
+/* Profile Container */
+.profile-container {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+/* Profile Header */
+.profile-header {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 20px;
+}
+.profile-header img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ddd;
+}
+.profile-header div {
+    margin-left: 20px;
+}
+.profile-header h2 {
+    margin: 0;
+    font-size: 22px;
+}
+.profile-header p {
+    margin: 5px 0;
+    color: #555;
+}
+
+/* Orders Section */
+.orders {
+    margin-top: 30px;
+}
+.orders h3 {
+    font-size: 20px;
+    border-bottom: 2px solid #febd69;
+    padding-bottom: 8px;
+}
+.order-card {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    background: #fff;
+}
+.order-card img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    margin-right: 15px;
+}
+.order-details h4 {
+    margin: 0;
+    font-size: 16px;
+}
+.order-details p {
+    margin: 4px 0;
+    color: #555;
+}
+
+/* Background */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f3f3f3;
+    margin: 0;
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+    <h1 onclick="window.location.href='index.html'">Amazon</h1>
+    <div class="nav-icons">
+        <a href="profile.html"><i class="fas fa-user"></i></a>
+        <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
+    </div>
+</div>
+
+<!-- Profile Content -->
+<div class="profile-container">
+    <div class="profile-header">
+        <img src="https://via.placeholder.com/100" alt="Profile Picture" id="profilePic">
+        <div>
+            <h2 id="profileName">John Doe</h2>
+            <p id="profileEmail">john@example.com</p>
+        </div>
+    </div>
+
+    <!-- Orders -->
+    <div class="orders">
+        <h3>Your Orders</h3>
+        <div class="order-card">
+            <img src="https://via.placeholder.com/80" alt="Product">
+            <div class="order-details">
+                <h4>Sample Product</h4>
+                <p>Ordered on: 18 Aug 2025</p>
+                <p>Status: Delivered</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Redirect if not logged in
+if (!sessionStorage.getItem("loggedInUser")) {
+    window.location.href = "login.html";
+}
+
+// Show user details
+const user = JSON.parse(sessionStorage.getItem("loggedInUser"));
+if (user) {
+    const nameEl = document.getElementById("profileName");
+    if (nameEl) nameEl.textContent = user.name;
+    const emailEl = document.getElementById("profileEmail");
+    if (emailEl) emailEl.textContent = user.email;
+    if (user.profilePic) {
+        const picEl = document.getElementById("profilePic");
+        if (picEl) picEl.src = user.profilePic;
+    }
+}
+</script>
+
+</body>
+</html>

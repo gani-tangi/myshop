@@ -1,0 +1,36 @@
+<!-- checkout.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Checkout | E-Shop</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Checkout</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="cart.html">Cart</a>
+    </nav>
+  </header>
+
+  <main>
+    <div id="product-checkout">
+      <!-- Product info will load here -->
+    </div>
+
+    <hr />
+
+    <h3>Shipping Information</h3>
+    <form id="checkout-form">
+      <label>Name:<br /><input type="text" name="name" required /></label><br /><br />
+      <label>Address:<br /><textarea name="address" required></textarea></label><br /><br />
+      <label>Phone:<br /><input type="text" name="phone" required /></label><br /><br />
+      <button type="submit">Place Order</button>
+    </form>
+  </main>
+
+  <script src="checkout.js"></script>
+</body>
+</html>
